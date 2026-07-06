@@ -1,64 +1,1033 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDGE INTERIORS — Premium Interior Design, Bangalore</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        :root {
-            --primary: #1a1a1a;
-            --accent: #c9a96e;
-            --accent-dark: #b8945f;
-            --white: #ffffff;
-            --cream: #faf8f5;
-            --gray: #6b6b6b;
-            --light-gray: #e8e8e8;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edge Interiors | Luxury Interior Design Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --warm-white: #F5F0E8;
+    --sand: #E8DFD0;
+    --taupe: #B8A99A;
+    --warm-gray: #8C7E6E;
+    --espresso: #3D3229;
+    --charcoal: #2A2420;
+    --gold: #C9A962;
+    --rose-gold: #D4A5A5;
+    --sage: #9CAF88;
+  }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-        }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--primary);
-            background: var(--white);
-            overflow-x: hidden;
-        }
+  h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+  .accent-font { font-family: 'Cormorant Garamond', serif; }
 
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-        }
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 1.5rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: all 0.4s ease;
+  }
+  .nav.scrolled {
+    background: rgba(250, 247, 242, 0.95);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 2px 30px rgba(0,0,0,0.05);
+    padding: 1rem 3rem;
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 600;
+    color: var(--cream);
+    letter-spacing: 2px;
+  }
+  .nav.scrolled .logo { color: var(--espresso); }
+  .nav-links {
+    display: flex; gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--cream);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    position: relative;
+    transition: color 0.3s;
+  }
+  .nav.scrolled .nav-links a { color: var(--warm-gray); }
+  .nav-links a::after {
+    content: ''; position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-links a:hover { color: var(--gold); }
 
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 20px 0;
-            transition: all 0.4s ease;
-        }
+  .hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #2A2420 0%, #3D3229 50%, #1a1612 100%);
+  }
+  .hero-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1920&q=80') center/cover;
+    opacity: 0.4;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--cream);
+    max-width: 900px;
+    padding: 0 2rem;
+  }
+  .hero-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.3s forwards;
+  }
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.6s forwards;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 300;
+    color: var(--sand);
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.9s forwards;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2.5rem;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.2s forwards;
+  }
+  .hero-cta:hover { background: var(--gold); color: var(--charcoal); }
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--taupe);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
 
-        .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 2px 30px rgba(0,0,0,0.08);
-            padding: 12px 0;
-        }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+    40% { transform: translateX(-50%) translateY(-10px); }
+    60% { transform: translateX(-50%) translateY(-5px); }
+  }
 
-        .navbar.scrolled .nav-logo,
-        .navbar.scrolled .nav-links a {
-            color: var(--primary);
+  section { padding: 6rem 0; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+  .section-header { text-align: center; margin-bottom: 4rem; }
+  .section-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    color: var(--espresso);
+    line-height: 1.2;
+  }
+  .section-title em { font-style: italic; color: var(--warm-gray); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .about-images { position: relative; height: 500px; }
+  .about-img-main {
+    position: absolute;
+    width: 75%;
+    height: 85%;
+    object-fit: cover;
+    border-radius: 2px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  }
+  .about-img-accent {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 50%;
+    height: 55%;
+    object-fit: cover;
+    border-radius: 2px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    border: 8px solid var(--cream);
+  }
+  .about-text h3 {
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    color: var(--espresso);
+  }
+  .about-text p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--warm-gray);
+    margin-bottom: 1.5rem;
+  }
+  .stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--sand);
+  }
+  .stat-item h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--espresso);
+  }
+  .stat-item span {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--taupe);
+  }
+
+  .services { background: var(--warm-white); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .service-card {
+    background: var(--cream);
+    padding: 2.5rem;
+    border-radius: 2px;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+    border-color: var(--sand);
+  }
+  .service-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1.5rem;
+    color: var(--gold);
+  }
+  .service-card h3 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    color: var(--espresso);
+  }
+  .service-card p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--warm-gray);
+  }
+  .service-list {
+    margin-top: 1.5rem;
+    list-style: none;
+  }
+  .service-list li {
+    font-size: 0.8rem;
+    color: var(--taupe);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--sand);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .service-list li::before {
+    content: '—';
+    color: var(--gold);
+  }
+
+  .portfolio-filter {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    padding: 0.6rem 1.5rem;
+    background: transparent;
+    border: 1px solid var(--sand);
+    color: var(--warm-gray);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 2px;
+  }
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--espresso);
+    color: var(--cream);
+    border-color: var(--espresso);
+  }
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+    cursor: pointer;
+    aspect-ratio: 4/5;
+  }
+  .portfolio-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .portfolio-item:hover img { transform: scale(1.08); }
+  .portfolio-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(42,36,32,0.85) 0%, transparent 60%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+  .portfolio-overlay h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--cream);
+    margin-bottom: 0.25rem;
+  }
+  .portfolio-overlay span {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .process {
+    background: var(--espresso);
+    color: var(--cream);
+  }
+  .process .section-title { color: var(--cream); }
+  .process .section-label { color: var(--gold); }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    position: relative;
+  }
+  .process-step {
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+  }
+  .step-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    opacity: 0.3;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .process-step h4 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    color: var(--cream);
+  }
+  .process-step p {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--taupe);
+  }
+  .step-connector {
+    position: absolute;
+    top: 3.5rem;
+    right: -1rem;
+    width: 2rem;
+    height: 1px;
+    background: var(--warm-gray);
+    opacity: 0.3;
+  }
+
+  .testimonials-slider {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .testimonial {
+    text-align: center;
+    padding: 2rem;
+    display: none;
+  }
+  .testimonial.active { display: block; }
+  .testimonial-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--espresso);
+    margin-bottom: 2rem;
+  }
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .testimonial-author img {
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .testimonial-author-info h5 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--espresso);
+  }
+  .testimonial-author-info span {
+    font-size: 0.8rem;
+    color: var(--taupe);
+  }
+  .testimonial-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+  }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--sand);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .dot.active {
+    background: var(--espresso);
+    transform: scale(1.2);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+  .contact-info h3 {
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: var(--espresso);
+  }
+  .contact-info > p {
+    color: var(--warm-gray);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+  .contact-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .contact-detail svg {
+    width: 20px; height: 20px;
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+  .contact-detail h5 {
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--taupe);
+    margin-bottom: 0.25rem;
+  }
+  .contact-detail p {
+    font-size: 0.95rem;
+    color: var(--espresso);
+  }
+  .contact-detail a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s;
+  }
+  .contact-detail a:hover { color: var(--gold); }
+
+  .contact-form {
+    background: var(--warm-white);
+    padding: 2.5rem;
+    border-radius: 2px;
+  }
+  .form-group { margin-bottom: 1.5rem; }
+  .form-group label {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--taupe);
+    margin-bottom: 0.5rem;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 1px solid var(--sand);
+    background: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: var(--espresso);
+    border-radius: 2px;
+    transition: border-color 0.3s;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: var(--gold);
+  }
+  .form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  .submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--espresso);
+    color: var(--cream);
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 2px;
+  }
+  .submit-btn:hover { background: var(--charcoal); }
+
+  footer {
+    background: var(--charcoal);
+    color: var(--taupe);
+    padding: 4rem 0 2rem;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  .footer-brand .logo {
+    color: var(--cream);
+    margin-bottom: 1rem;
+    display: inline-block;
+  }
+  .footer-brand p {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    max-width: 300px;
+  }
+  .footer-col h5 {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 0.75rem; }
+  .footer-col a {
+    color: var(--taupe);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s;
+  }
+  .footer-col a:hover { color: var(--gold); }
+  .footer-bottom {
+    border-top: 1px solid rgba(184,169,154,0.2);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+  }
+  .social-links { display: flex; gap: 1rem; }
+  .social-links a {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(184,169,154,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--taupe);
+    transition: all 0.3s;
+  }
+  .social-links a:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .about-grid,
+    .contact-grid,
+    .footer-grid { grid-template-columns: 1fr; }
+    .services-grid,
+    .portfolio-grid,
+    .process-steps { grid-template-columns: 1fr; }
+    .process-step .step-connector { display: none; }
+    .about-images { height: 350px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="navbar">
+  <a href="#" class="logo">EDGE INTERIORS</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-label">Luxury Interior Design Studio</div>
+    <h1>Spaces That Tell <em>Your Story</em></h1>
+    <p class="hero-subtitle">We craft bespoke interiors that harmonize elegance with livability, transforming houses into homes that reflect the soul of those who inhabit them.</p>
+    <a href="#contact" class="hero-cta">
+      Begin Your Journey
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="about-grid reveal">
+      <div class="about-images">
+        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80" alt="Interior Design" class="about-img-main">
+        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=400&q=80" alt="Design Detail" class="about-img-accent">
+      </div>
+      <div class="about-text">
+        <div class="section-label">About Us</div>
+        <h3>Designing with Intention, <em>Crafting with Soul</em></h3>
+        <p>At Edge Interiors, we believe that exceptional interior design is not merely about aesthetics—it is about understanding how people live, work, and dream within their spaces. Founded in 2010, our studio has completed over 200 residential and commercial projects across India and beyond.</p>
+        <p>Our multidisciplinary team brings together architects, interior designers, and artisans who share a singular vision: to create environments that inspire, comfort, and endure. From luxury apartments in Bangalore to serene villas in Goa, we approach each project with fresh eyes and unwavering dedication.</p>
+        <div class="stats">
+          <div class="stat-item"><h4>200+</h4><span>Projects</span></div>
+          <div class="stat-item"><h4>14</h4><span>Years</span></div>
+          <div class="stat-item"><h4>35</h4><span>Awards</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Comprehensive Design <em>Services</em></h2>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <h3>Residential Design</h3>
+        <p>Full-service interior design for homes, apartments, and estates. From concept to completion, we manage every detail.</p>
+        <ul class="service-list">
+          <li>Space Planning & Layout</li>
+          <li>Custom Furniture Design</li>
+          <li>Material & Finish Selection</li>
+          <li>Art Curation</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <h3>Commercial Spaces</h3>
+        <p>Elevating workplaces, hotels, and retail environments through strategic design that enhances brand identity and user experience.</p>
+        <ul class="service-list">
+          <li>Office & Workplace Design</li>
+          <li>Hospitality Interiors</li>
+          <li>Retail & Showroom Design</li>
+          <li>Brand Integration</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        <h3>Design Consultation</h3>
+        <p>Expert guidance for clients who seek professional direction while maintaining hands-on involvement in their project.</p>
+        <ul class="service-list">
+          <li>Design Direction Sessions</li>
+          <li>Color & Material Consulting</li>
+          <li>Furniture Sourcing</li>
+          <li>Virtual Design Services</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Our Work</div>
+      <h2 class="section-title">Featured <em>Projects</em></h2>
+    </div>
+    <div class="portfolio-filter reveal">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="residential">Residential</button>
+      <button class="filter-btn" data-filter="commercial">Commercial</button>
+      <button class="filter-btn" data-filter="hospitality">Hospitality</button>
+    </div>
+    <div class="portfolio-grid reveal" id="portfolioGrid">
+      <div class="portfolio-item" data-category="residential">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="The Madison Residence">
+        <div class="portfolio-overlay"><h4>The Madison Residence</h4><span>Bangalore, India</span></div>
+      </div>
+      <div class="portfolio-item" data-category="hospitality">
+        <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=600&q=80" alt="Casa del Sol">
+        <div class="portfolio-overlay"><h4>Casa del Sol</h4><span>Goa, India</span></div>
+      </div>
+      <div class="portfolio-item" data-category="commercial">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Meridian Offices">
+        <div class="portfolio-overlay"><h4>Meridian Offices</h4><span>Bangalore, India</span></div>
+      </div>
+      <div class="portfolio-item" data-category="residential">
+        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80" alt="The Hudson Loft">
+        <div class="portfolio-overlay"><h4>The Hudson Loft</h4><span>Delhi, India</span></div>
+      </div>
+      <div class="portfolio-item" data-category="hospitality">
+        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&q=80" alt="Azure Boutique Hotel">
+        <div class="portfolio-overlay"><h4>Azure Boutique Hotel</h4><span>Jaipur, India</span></div>
+      </div>
+      <div class="portfolio-item" data-category="commercial">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Vista Gallery">
+        <div class="portfolio-overlay"><h4>Vista Gallery</h4><span>Pune, India</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process" class="process">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">How We Work</div>
+      <h2 class="section-title">Our Design <em>Process</em></h2>
+    </div>
+    <div class="process-steps reveal">
+      <div class="process-step">
+        <div class="step-number">01</div>
+        <h4>Discovery</h4>
+        <p>We begin with deep listening—understanding your lifestyle, aspirations, and the story you want your space to tell.</p>
+        <div class="step-connector"></div>
+      </div>
+      <div class="process-step">
+        <div class="step-number">02</div>
+        <h4>Concept</h4>
+        <p>Our designers translate your vision into mood boards, spatial plans, and 3D visualizations that bring ideas to life.</p>
+        <div class="step-connector"></div>
+      </div>
+      <div class="process-step">
+        <div class="step-number">03</div>
+        <h4>Development</h4>
+        <p>We refine every detail—materials, finishes, custom furniture, and lighting—to ensure cohesive, timeless design.</p>
+        <div class="step-connector"></div>
+      </div>
+      <div class="process-step">
+        <div class="step-number">04</div>
+        <h4>Delivery</h4>
+        <p>From procurement to installation, we manage the entire execution with meticulous attention to quality and timeline.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Testimonials</div>
+      <h2 class="section-title">Words from Our <em>Clients</em></h2>
+    </div>
+    <div class="testimonials-slider reveal">
+      <div class="testimonial active">
+        <p class="testimonial-quote">"Edge Interiors transformed our penthouse into a sanctuary. Their attention to detail and ability to capture our personality in every corner was extraordinary. It feels like home in a way we never imagined possible."</p>
+        <div class="testimonial-author">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="Priya Sharma">
+          <div class="testimonial-author-info"><h5>Priya Sharma</h5><span>The Madison Residence, Bangalore</span></div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <p class="testimonial-quote">"Working with the Edge Interiors team on our boutique hotel was a revelation. They understood our brand instantly and created spaces that our guests never want to leave. Truly world-class design."</p>
+        <div class="testimonial-author">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Rajesh Mehta">
+          <div class="testimonial-author-info"><h5>Rajesh Mehta</h5><span>Azure Boutique Hotel, Jaipur</span></div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <p class="testimonial-quote">"The team balanced creativity with practicality perfectly. Our office now inspires productivity while feeling warm and inviting. The best investment we've made for our company culture."</p>
+        <div class="testimonial-author">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt="Vikram Patel">
+          <div class="testimonial-author-info"><h5>Vikram Patel</h5><span>Meridian Offices, Bangalore</span></div>
+        </div>
+      </div>
+      <div class="testimonial-dots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid reveal">
+      <div class="contact-info">
+        <div class="section-label">Get in Touch</div>
+        <h3>Let's Create <em>Something Beautiful</em></h3>
+        <p>Whether you are envisioning a complete transformation or seeking expert guidance, we'd love to hear about your project. Every great space begins with a conversation.</p>
+        <div class="contact-detail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><h5>Studio</h5><p>12, MG Road, Suite 301<br>Bangalore Central, Karnataka 560001</p></div>
+        </div>
+        <div class="contact-detail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <div><h5>Email</h5><p><a href="mailto:hello@edgeinteriors.in">hello@edgeinteriors.in</a></p></div>
+        </div>
+        <div class="contact-detail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <div><h5>Phone</h5><p><a href="tel:+917975780715">+91 79757 80715</a></p></div>
+        </div>
+        <div class="contact-detail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+          <div><h5>WhatsApp</h5><p><a href="https://wa.me/917975780715" target="_blank">+91 79757 80715</a></p></div>
+        </div>
+      </div>
+      <form class="contact-form" id="contactForm">
+        <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your name" required></div>
+        <div class="form-group"><label>Email Address</label><input type="email" placeholder="your@email.com" required></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+91 XXXXX XXXXX"></div>
+        <div class="form-group">
+          <label>Project Type</label>
+          <select required>
+            <option value="">Select a service</option>
+            <option value="residential">Residential Design</option>
+            <option value="commercial">Commercial Design</option>
+            <option value="consultation">Design Consultation</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Tell Us About Your Project</label><textarea placeholder="Share your vision, timeline, and any specific requirements..."></textarea></div>
+        <button type="submit" class="submit-btn">Send Inquiry</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo">EDGE INTERIORS</span>
+        <p>Creating timeless interiors that inspire and endure. Based in Bangalore Central, designing across India.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#">Residential Design</a></li>
+          <li><a href="#">Commercial Spaces</a></li>
+          <li><a href="#">Design Consultation</a></li>
+          <li><a href="#">Art Curation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Our Team</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Pinterest</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Houzz</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Edge Interiors. All rights reserved.</span>
+      <div class="social-links">
+        <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+        <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  const revealElements = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  revealElements.forEach(el => revealObserver.observe(el));
+
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      portfolioItems.forEach(item => {
+        if (filter === 'all' || item.dataset.category === filter) {
+          item.style.display = 'block';
+          setTimeout(() => item.style.opacity = '1', 10);
+        } else {
+          item.style.opacity = '0';
+          setTimeout(() => item.style.display = 'none', 300);
         }
+      });
+    });
+  });
+
+  const testimonials = document.querySelectorAll('.testimonial');
+  const dots = document.querySelectorAll('.dot');
+  let currentSlide = 0;
+  function showSlide(index) {
+    testimonials.forEach((t, i) => t.classList.toggle('active', i === index));
+    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+    currentSlide = index;
+  }
+  dots.forEach(dot => dot.addEventListener('click', () => showSlide(parseInt(dot.dataset.index))));
+  setInterval(() => showSlide((currentSlide + 1) % testimonials.length), 5000);
+
+  document.getElementById('contactForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('.submit-btn');
+    const originalText = btn.textContent;
+    btn.textContent = 'Message Sent!';
+    btn.style.background = '#9CAF88';
+    setTimeout(() => { btn.textContent = originalText; btn.style.background = ''; e.target.reset(); }, 3000);
+  });
+</script>
+
+</body>
+</html>        }
 
         .navbar.scrolled .nav-links a:hover {
             color: var(--accent);
